@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildCharacterDirective, mapEmotionFromText } from "./EmotionMapper.js";
+import { buildCharacterDirective, buildCharacterDirectiveV2, mapEmotionFromText } from "./EmotionMapper.js";
 
 describe("EmotionMapper", () => {
   it("maps conversational text to stable character emotions for joy, anger, sorrow, and fun", () => {
@@ -31,5 +31,24 @@ describe("EmotionMapper", () => {
       speakingStyle: "normal",
       expression: "anger"
     });
+  });
+
+  it("builds CharacterDirectiveV2 from marker text and JSON directive payloads", () => {
+    expect(buildCharacterDirectiveV2("[emotion: happy] Great.")).toEqual({
+      text: "Great.",
+      emotion: "joy",
+      intensity: 0.75,
+      speakingStyle: "normal",
+      expression: { semantic: "joy", intensity: 0.75 },
+      motion: { semantic: "happy", priority: "normal" }
+    });
+    expect(buildCharacterDirectiveV2('{"text":"Wait","emotion":"surprised","intensity":0.9,"motion":{"semantic":"tapBody","priority":"force"}}')).toEqual(
+      expect.objectContaining({
+        text: "Wait",
+        emotion: "surprised",
+        intensity: 0.9,
+        motion: { semantic: "tapBody", priority: "force" }
+      })
+    );
   });
 });

@@ -18,6 +18,8 @@ describe("Electron security", () => {
 
     const csp = createContentSecurityPolicy(49152);
     expect(csp).toContain("default-src 'self'");
+    expect(csp).toContain("img-src 'self' data: file: http://127.0.0.1:49152");
+    expect(csp).toContain("media-src 'self' blob: http://127.0.0.1:49152");
     expect(csp).toContain("connect-src 'self' file: https://api.openai.com http://127.0.0.1:49152");
     expect(csp).toContain("worker-src 'self' blob:");
     expect(csp).not.toContain("*");

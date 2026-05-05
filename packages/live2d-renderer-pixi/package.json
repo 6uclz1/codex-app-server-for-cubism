@@ -1,0 +1,23 @@
+{
+  "name": "@cubism/live2d-renderer-pixi",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@cubism/live2d-domain": "0.1.0",
+    "@pixi/unsafe-eval": "^6.5.10",
+    "pixi-live2d-display": "^0.4.0",
+    "pixi.js": "^6.5.10"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  }
+}
