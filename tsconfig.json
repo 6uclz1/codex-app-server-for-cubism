@@ -1,0 +1,11 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/shared-types" },
+    { "path": "packages/live2d-core" },
+    { "path": "packages/conversation-core" },
+    { "path": "packages/codex-client" },
+    { "path": "packages/storage" },
+    { "path": "apps/desktop" }
+  ]
+}
