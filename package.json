@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build -w @cubism/shared-types && npm run build -w @cubism/live2d-core && npm run build -w @cubism/conversation-core && npm run build -w @cubism/codex-client && npm run build -w @cubism/storage && npm run build -w @cubism/desktop",
+    "build": "npm run build -w @cubism/shared-types && npm run build -w @cubism/live2d-domain && npm run build -w @cubism/live2d-core && npm run build -w @cubism/character-runtime && npm run build -w @cubism/media-core && npm run build -w @cubism/live2d-renderer-pixi && npm run build -w @cubism/conversation-core && npm run build -w @cubism/codex-client && npm run build -w @cubism/storage && npm run build -w @cubism/desktop",
     "dev": "npm run dev -w @cubism/desktop",
     "start": "npm run start -w @cubism/desktop",
     "test": "vitest run",
@@ -31,6 +31,10 @@
   },
   "dependencies": {
     "@pixi/unsafe-eval": "^6.5.10",
+    "@cubism/character-runtime": "0.1.0",
+    "@cubism/live2d-domain": "0.1.0",
+    "@cubism/live2d-renderer-pixi": "0.1.0",
+    "@cubism/media-core": "0.1.0",
     "@vitejs/plugin-react": "^5.0.0",
     "fastify": "^5.0.0",
     "live2dcubismcore": "^1.0.2",

@@ -9,5 +9,13 @@
     "types": ["vite/client"],
     "noEmit": true
   },
+  "references": [
+    { "path": "../../packages/shared-types" },
+    { "path": "../../packages/live2d-domain" },
+    { "path": "../../packages/live2d-renderer-pixi" },
+    { "path": "../../packages/character-runtime" },
+    { "path": "../../packages/media-core" },
+    { "path": "../../packages/conversation-core" }
+  ],
   "include": ["renderer/src/**/*.ts", "renderer/src/**/*.tsx"]
 }

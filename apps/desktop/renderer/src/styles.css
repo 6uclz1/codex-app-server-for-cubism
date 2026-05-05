@@ -17,6 +17,7 @@ body {
 
 button,
 input,
+select,
 textarea {
   font: inherit;
 }
@@ -50,6 +51,10 @@ button:disabled {
   min-height: 100vh;
 }
 
+.appShell.compact {
+  grid-template-columns: minmax(320px, 1fr);
+}
+
 .stagePane {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
@@ -71,6 +76,13 @@ button:disabled {
   min-width: 0;
   min-height: 0;
   overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.live2dStage.isDraggingStage {
+  cursor: grabbing;
 }
 
 .avatarCanvas,
@@ -100,6 +112,38 @@ button:disabled {
   font-size: 12px;
 }
 
+.stageZoomControls {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 36px auto 36px;
+  align-items: center;
+  gap: 8px;
+  min-width: 132px;
+  border: 1px solid #cbd4d9;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 20px rgba(31, 42, 51, 0.12);
+  color: #2f3942;
+  padding: 6px;
+}
+
+.stageZoomControls span {
+  min-width: 44px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.stageZoomButton {
+  width: 36px;
+  min-height: 32px;
+  padding: 0;
+  border-radius: 8px;
+}
+
 .modelStrip {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
@@ -122,12 +166,14 @@ button:disabled {
 }
 
 .sidePane {
-  display: grid;
-  grid-template-rows: auto minmax(320px, 1fr) minmax(220px, 320px);
+  display: flex;
+  flex-direction: column;
   gap: 12px;
+  max-height: 100vh;
   min-height: 100vh;
   padding: 12px;
   background: #f7f4ee;
+  overflow: auto;
 }
 
 .codexStatusRow,
@@ -150,6 +196,7 @@ button:disabled {
 }
 
 input,
+select,
 textarea {
   width: 100%;
   border: 1px solid #cfd6dc;
@@ -162,6 +209,11 @@ textarea {
 input {
   height: 38px;
   padding: 0 10px;
+}
+
+select {
+  height: 34px;
+  padding: 0 8px;
 }
 
 textarea {
@@ -181,8 +233,34 @@ textarea {
   padding: 12px;
 }
 
+.modelPanel,
+.runtimePanel {
+  grid-template-rows: auto auto auto;
+  flex: 0 0 auto;
+}
+
+.mappingPanel {
+  grid-template-rows: auto minmax(160px, 260px);
+  flex: 0 0 300px;
+}
+
+.chatPanel {
+  flex: 0 0 380px;
+  min-height: 360px;
+}
+
 .codexPanel {
   grid-template-rows: auto auto auto minmax(0, 1fr);
+  flex: 0 0 240px;
+  min-height: 240px;
+}
+
+.modelPanel {
+  min-height: 220px;
+}
+
+.runtimePanel {
+  min-height: 180px;
 }
 
 .panelHeader {
@@ -248,6 +326,107 @@ h2 {
   color: #dbe5ef;
   padding: 8px;
   font-size: 12px;
+}
+
+.modelList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 140px;
+  overflow: auto;
+}
+
+.modelList button {
+  justify-content: flex-start;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selectedRow {
+  border-color: #2f7d73;
+  background: #e2efec;
+  color: #18554d;
+}
+
+.diagnostics {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  color: #55616c;
+  font-size: 12px;
+}
+
+.diagGrid {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 6px 10px;
+  align-items: center;
+}
+
+.diagGrid span {
+  color: #68727d;
+}
+
+.diagGrid strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #252b31;
+}
+
+.issueList {
+  display: grid;
+  gap: 6px;
+  max-height: 92px;
+  overflow: auto;
+}
+
+.issueList code {
+  overflow-wrap: anywhere;
+  border-radius: 6px;
+  background: #fff5f3;
+  color: #8a2d2d;
+  padding: 6px;
+}
+
+.mappingGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  min-height: 0;
+  overflow: auto;
+}
+
+.mappingGrid label {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr) 34px;
+  gap: 8px;
+  align-items: center;
+}
+
+.mappingGrid label span,
+.runtimePanel label span {
+  color: #59636d;
+  font-size: 12px;
+}
+
+.mappingGrid button {
+  width: 34px;
+  min-height: 34px;
+  padding: 0;
+}
+
+.runtimePanel label {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+input[type="range"] {
+  padding: 0;
+  accent-color: #2f7d73;
 }
 
 @media (max-width: 900px) {

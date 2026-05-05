@@ -13,8 +13,12 @@
   },
   "dependencies": {
     "@cubism/codex-client": "0.1.0",
+    "@cubism/character-runtime": "0.1.0",
     "@cubism/conversation-core": "0.1.0",
     "@cubism/live2d-core": "0.1.0",
+    "@cubism/live2d-domain": "0.1.0",
+    "@cubism/live2d-renderer-pixi": "0.1.0",
+    "@cubism/media-core": "0.1.0",
     "@cubism/shared-types": "0.1.0",
     "@cubism/storage": "0.1.0",
     "fastify": "^5.0.0",

@@ -6,6 +6,15 @@ const api = {
   setApiKey: (apiKey: string): Promise<{ ok: boolean; error?: string }> => ipcRenderer.invoke("api-key:set", apiKey),
   hasApiKey: (): Promise<boolean> => ipcRenderer.invoke("api-key:has"),
   selectModel3Json: (): Promise<string | null> => ipcRenderer.invoke("dialog:select-model3"),
+  importLive2DModel: (entryPath: string, displayName?: string): Promise<{ ok: boolean; model?: unknown; manifest?: unknown; capabilities?: unknown; validation?: unknown; error?: string }> =>
+    ipcRenderer.invoke("live2d:import-model", { entryPath, displayName }),
+  listLive2DModels: (): Promise<{ ok: boolean; models?: unknown[]; error?: string }> => ipcRenderer.invoke("live2d:list-models"),
+  deleteLive2DModel: (id: string): Promise<{ ok: boolean; error?: string }> => ipcRenderer.invoke("live2d:delete-model", id),
+  saveLive2DMotionMappings: (modelId: string, mappings: unknown[]): Promise<{ ok: boolean; mappings?: unknown[]; error?: string }> =>
+    ipcRenderer.invoke("live2d:save-motion-mappings", { modelId, mappings }),
+  saveLive2DExpressionMappings: (modelId: string, mappings: unknown[]): Promise<{ ok: boolean; mappings?: unknown[]; error?: string }> =>
+    ipcRenderer.invoke("live2d:save-expression-mappings", { modelId, mappings }),
+  setCompanionWindowMode: (enabled: boolean): Promise<{ ok: boolean; error?: string }> => ipcRenderer.invoke("window:companion-mode", enabled),
   startCodex: (): Promise<{ ok: boolean; error?: string }> => ipcRenderer.invoke("codex:start"),
   loginCodex: (): Promise<{ ok: boolean; loginId?: string; error?: string }> => ipcRenderer.invoke("codex:login"),
   logoutCodex: (): Promise<{ ok: boolean; error?: string }> => ipcRenderer.invoke("codex:logout"),

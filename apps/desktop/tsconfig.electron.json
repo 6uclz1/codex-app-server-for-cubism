@@ -8,6 +8,9 @@
   },
   "references": [
     { "path": "../../packages/shared-types" },
+    { "path": "../../packages/live2d-domain" },
+    { "path": "../../packages/character-runtime" },
+    { "path": "../../packages/media-core" },
     { "path": "../../packages/conversation-core" },
     { "path": "../../packages/codex-client" },
     { "path": "../../packages/storage" }

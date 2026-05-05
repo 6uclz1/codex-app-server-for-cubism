@@ -31,13 +31,17 @@ export function secureWebPreferences(preload: string): NonNullable<BrowserWindow
   };
 }
 
-export function createContentSecurityPolicy(localApiPort: number): string {
+export interface ContentSecurityPolicyOptions {
+  allowUnsafeInlineScripts?: boolean;
+}
+
+export function createContentSecurityPolicy(localApiPort: number, options: ContentSecurityPolicyOptions = {}): string {
   return [
     "default-src 'self'",
-    "script-src 'self'",
+    `script-src 'self'${options.allowUnsafeInlineScripts ? " 'unsafe-inline'" : ""}`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: file:",
-    "media-src 'self' blob:",
+    `img-src 'self' data: file: http://127.0.0.1:${localApiPort}`,
+    `media-src 'self' blob: http://127.0.0.1:${localApiPort}`,
     "font-src 'self'",
     `connect-src 'self' file: https://api.openai.com http://127.0.0.1:${localApiPort}`,
     "worker-src 'self' blob:",
