@@ -1,0 +1,24 @@
+appId: com.local.cubism-character-desktop
+productName: Cubism Character Desktop
+electronVersion: 39.8.9
+directories:
+  output: ../../dist-packages
+files:
+  - dist/**/*
+  - package.json
+asar: true
+mac:
+  identity: null
+  target:
+    - dmg
+    - zip
+win:
+  target:
+    - nsis
+    - portable
+linux:
+  target:
+    - AppImage
+    - deb
+extraMetadata:
+  main: dist/electron/electron/main.js

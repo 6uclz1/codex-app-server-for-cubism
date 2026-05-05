@@ -1,0 +1,31 @@
+{
+  "name": "@cubism/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/electron/electron/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.electron.json && npm run build:preload && vite build --config vite.config.ts",
+    "build:preload": "esbuild preload/preload.ts --bundle --platform=node --format=cjs --external:electron --outfile=dist/electron/preload/preload.cjs",
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"tsc -p tsconfig.electron.json --watch --preserveWatchOutput\" \"npm run build:preload -- --watch=forever\" \"wait-on http://127.0.0.1:5173 dist/electron/electron/main.js dist/electron/preload/preload.cjs && ELECTRON_RENDERER_URL=http://127.0.0.1:5173 electron dist/electron/electron/main.js\"",
+    "start": "npm run build && electron dist/electron/electron/main.js",
+    "typecheck": "tsc -p tsconfig.electron.json && tsc -p tsconfig.renderer.json --noEmit"
+  },
+  "dependencies": {
+    "@cubism/codex-client": "0.1.0",
+    "@cubism/conversation-core": "0.1.0",
+    "@cubism/live2d-core": "0.1.0",
+    "@cubism/shared-types": "0.1.0",
+    "@cubism/storage": "0.1.0",
+    "fastify": "^5.0.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "esbuild": "^0.27.7",
+    "vite": "^7.0.0"
+  }
+}

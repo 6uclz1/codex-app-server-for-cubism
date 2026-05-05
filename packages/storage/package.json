@@ -1,0 +1,20 @@
+{
+  "name": "@cubism/storage",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/db.js",
+  "types": "dist/db.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/db.d.ts",
+      "import": "./dist/db.js"
+    }
+  },
+  "dependencies": {
+    "@cubism/shared-types": "0.1.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  }
+}

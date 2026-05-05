@@ -1,0 +1,268 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #20242a;
+  background: #eef1f3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  border: 1px solid #cfd6dc;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #20242a;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #6d948d;
+  color: #1f665d;
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.62;
+}
+
+.appShell {
+  display: grid;
+  grid-template-columns: minmax(560px, 1fr) minmax(360px, 420px);
+  min-height: 100vh;
+}
+
+.stagePane {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 100vh;
+  background: #e8edf0;
+  border-right: 1px solid #d5dce1;
+}
+
+.stageToolbar {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  border-bottom: 1px solid #d5dce1;
+  background: #f7f8f8;
+}
+
+.live2dStage {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.avatarCanvas,
+.live2dCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.live2dCanvas {
+  position: absolute;
+  inset: 0;
+}
+
+.stageError {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  max-height: 96px;
+  overflow: auto;
+  border: 1px solid #d9a5a5;
+  border-radius: 8px;
+  background: #fff5f3;
+  color: #8a2d2d;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.modelStrip {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-top: 1px solid #d5dce1;
+  background: #f7f8f8;
+  color: #58616b;
+}
+
+.modelStrip span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modelStrip strong {
+  color: #1f665d;
+}
+
+.sidePane {
+  display: grid;
+  grid-template-rows: auto minmax(320px, 1fr) minmax(220px, 320px);
+  gap: 12px;
+  min-height: 100vh;
+  padding: 12px;
+  background: #f7f4ee;
+}
+
+.codexStatusRow,
+.composer {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.codexStatusRow {
+  min-height: 42px;
+  color: #4f5963;
+}
+
+.codexStatusRow span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid #cfd6dc;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #20242a;
+  outline: none;
+}
+
+input {
+  height: 38px;
+  padding: 0 10px;
+}
+
+textarea {
+  min-height: 82px;
+  resize: vertical;
+  padding: 10px;
+}
+
+.panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  min-height: 0;
+  border: 1px solid #d6d0c5;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 12px;
+}
+
+.codexPanel {
+  grid-template-rows: auto auto auto minmax(0, 1fr);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.panelHeader span {
+  color: #6f604d;
+  font-size: 13px;
+}
+
+.messages,
+.eventLog {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  overflow: auto;
+}
+
+.message {
+  max-width: 88%;
+  border-radius: 8px;
+  padding: 9px 10px;
+}
+
+.message p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.message small {
+  display: block;
+  margin-top: 6px;
+  color: #6c747c;
+}
+
+.message.user {
+  align-self: flex-end;
+  background: #e2efec;
+}
+
+.message.assistant {
+  align-self: flex-start;
+  background: #f0eee8;
+}
+
+.eventLog code {
+  display: block;
+  overflow-wrap: anywhere;
+  border-radius: 6px;
+  background: #22272e;
+  color: #dbe5ef;
+  padding: 8px;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .appShell {
+    grid-template-columns: 1fr;
+  }
+
+  .stagePane,
+  .sidePane {
+    min-height: auto;
+  }
+
+  .stagePane {
+    height: 56vh;
+    border-right: 0;
+    border-bottom: 1px solid #d5dce1;
+  }
+}
